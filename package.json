@@ -51,10 +51,11 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-   
+    "@types/lodash": "^4.14.191",
     "compression": "^1.7.4",
     "errorhandler": "^1.5.1",
     "express": "^4.18.2",
-    "jest-cucumber": "^3.0.1"
+    "jest-cucumber": "^3.0.1",
+    "lodash": "^4.17.21"
   }
 }

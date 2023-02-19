@@ -10,6 +10,7 @@ var file_1 = require("./utility/file");
 var app = (0, express_1.default)();
 var controllers_1 = __importDefault(require("./controllers"));
 app.use((0, compression_1.default)());
+app.use(express_1.default.json());
 if (process.env.NODE_ENV === "development") {
     app.use((0, errorhandler_1.default)());
 }

@@ -9,6 +9,7 @@ import initlizeRouter from "./controllers";
 
 
 app.use(compression());
+app.use(express.json())
 
 if (process.env.NODE_ENV === "development") {
     app.use(errorHandler());
