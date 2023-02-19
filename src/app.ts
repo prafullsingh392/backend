@@ -2,10 +2,7 @@ import express from 'express';
 import compression from "compression";
 import errorHandler from 'errorhandler';
 import data from './assets/data.json'
-import fs from 'fs';
-import path from 'path';
-
-let configFilename = path.join(__dirname, "../../", "output.json");
+import {createOutputFile} from './utility/file'
 
 const app = express();
 import initlizeRouter from "./controllers";
@@ -18,13 +15,8 @@ if (process.env.NODE_ENV === "development") {
 }
 
 initlizeRouter(app);
+createOutputFile()
 
-if(!fs.existsSync(configFilename)){
-    fs.copyFile(`${__dirname}/assets/data.json`, configFilename, (err) => {
-        if (err) throw err;
-        console.log('source.txt was copied to destination.txt');
-    });
-}
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(

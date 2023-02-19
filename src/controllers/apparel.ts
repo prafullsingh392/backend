@@ -5,7 +5,7 @@ import { Response, Request, NextFunction } from "express";
 
 
 export const updateCodeNSize = (req:Request, res:Response, next:NextFunction) => {
-    res.send({name:"Prafull"}); 
+    res.send(req); 
 };
 
 export const updateQuantity = (req:Request, res:Response, next:NextFunction) => {
