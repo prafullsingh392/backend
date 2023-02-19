@@ -36,9 +36,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkPrice = exports.checkStock = exports.update = void 0;
+exports.checkPrice = exports.checkStock = exports.update = exports.defaultRoute = void 0;
 var file_1 = require("../utility/file");
 var jsonOperation_1 = require("../utility/jsonOperation");
+var defaultRoute = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        res.send({ status: "ok" });
+        return [2 /*return*/];
+    });
+}); };
+exports.defaultRoute = defaultRoute;
 var update = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var data, output;
     return __generator(this, function (_a) {
