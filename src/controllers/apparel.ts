@@ -4,7 +4,7 @@ import { Response, Request, NextFunction } from "express";
 import {readFileData,writeInFile} from '../utility/file';
 import {removeJson,updateJson} from '../utility/jsonOperation';
 
-export const updateCodeNSize = async (req:Request, res:Response, next:NextFunction) => {
+export const update = async (req:Request, res:Response, next:NextFunction) => {
     let data = await readFileData();
     let output = null;
     const {type} = req.body; 
@@ -23,9 +23,7 @@ export const updateCodeNSize = async (req:Request, res:Response, next:NextFuncti
     res.send(output ? {status:"success"}:{status:"failure"});
 };
 
-export const updateQuantity = (req:Request, res:Response, next:NextFunction) => {
-    res.send({name:"Prafull"}); 
-};
+
 
 export const checkStock = (req:Request, res:Response, next:NextFunction) => {
     res.send({name:"Prafull"}); 
