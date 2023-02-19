@@ -2,22 +2,11 @@
 
 import { Response, Request, NextFunction } from "express";
 import {readFileData,writeInFile} from '../utility/file';
-import {removeJson,updateJson} from '../utility/jsonOperation';
+import {updateJson} from '../utility/jsonOperation';
 
 export const update = async (req:Request, res:Response, next:NextFunction) => {
     let data = await readFileData();
-    let output = null;
-    const {type} = req.body; 
-    switch(type){
-        case 'ADD':{
-            output = updateJson(data,req.body)
-            break;
-        }
-        case 'REMOVE':{
-            output = removeJson(data,req.body)
-            break;
-        }
-    }
+    let output = updateJson(data,req.body);
     if(output)
         writeInFile(output)
     res.send(output ? {status:"success"}:{status:"failure"});

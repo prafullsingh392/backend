@@ -36,28 +36,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkPrice = exports.checkStock = exports.updateQuantity = exports.updateCodeNSize = void 0;
+exports.checkPrice = exports.checkStock = exports.update = void 0;
 var file_1 = require("../utility/file");
 var jsonOperation_1 = require("../utility/jsonOperation");
-var updateCodeNSize = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var data, output, type;
+var update = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var data, output;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, (0, file_1.readFileData)()];
             case 1:
                 data = _a.sent();
-                output = null;
-                type = req.body.type;
-                switch (type) {
-                    case 'ADD': {
-                        output = (0, jsonOperation_1.updateJson)(data, req.body);
-                        break;
-                    }
-                    case 'REMOVE': {
-                        output = (0, jsonOperation_1.removeJson)(data, req.body);
-                        break;
-                    }
-                }
+                output = (0, jsonOperation_1.updateJson)(data, req.body);
                 if (output)
                     (0, file_1.writeInFile)(output);
                 res.send(output ? { status: "success" } : { status: "failure" });
@@ -65,11 +54,7 @@ var updateCodeNSize = function (req, res, next) { return __awaiter(void 0, void 
         }
     });
 }); };
-exports.updateCodeNSize = updateCodeNSize;
-var updateQuantity = function (req, res, next) {
-    res.send({ name: "Prafull" });
-};
-exports.updateQuantity = updateQuantity;
+exports.update = update;
 var checkStock = function (req, res, next) {
     res.send({ name: "Prafull" });
 };

@@ -25,8 +25,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var apparelController = __importStar(require("./apparel"));
 function initlizeRouter(app) {
-    app.put("/apparel/v1/update-code-size", apparelController.updateCodeNSize);
-    app.put("/apparel/v1/update-quantity", apparelController.updateQuantity);
+    app.put("/apparel/v1/update-code-size", apparelController.update);
     app.post("/apparel/v1/check-stock", apparelController.checkStock);
     app.post("/apparel/v1/check-price", apparelController.checkPrice);
 }

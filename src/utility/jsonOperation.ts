@@ -1,32 +1,26 @@
 function updateJson(inputJSON:any,requestBody:any){
-    inputJSON.forEach((data:any) => {
-        if(data.id  === requestBody.id){
-            if(requestBody.code)
-                data.code = requestBody.code;
-            if(requestBody.quantity)
-                data.quantity =  data.quantity + requestBody.quantity;
-            if(requestBody.price)
-                data.price =  requestBody.price;
-        }
+    requestBody.forEach((request:any)=>{
+        
+        inputJSON.forEach((data:any) => {
+            if(data.id  === request.id){
+                if(request.code)
+                    data.code = request.code;
+                if(request.quantity)
+                    data.quantity =  request.quantity;
+                if(request.price)
+                    data.price =  request.price;
+            }
+        })
+    
+
     })
+
+    
     return inputJSON;
 }
 
-function removeJson(inputJSON:any,requestBody:any){
-    inputJSON.forEach((data:any) => {
-        if(data.id  === requestBody.id){
-            if(requestBody.code)
-                data.code = requestBody.code;
-            if(requestBody.quantity && data.quantity > requestBody.quantity)
-                data.quantity =  data.quantity - requestBody.quantity;
-            if(requestBody.price)
-                data.price =  requestBody.price;
-        }
-    })
-    return inputJSON;
-}
+
 
 export {
-    updateJson,
-    removeJson
+    updateJson
 }
