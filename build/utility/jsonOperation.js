@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkIfStockIsAvailable = exports.updateJson = void 0;
+exports.checkStockPrice = exports.checkIfStockIsAvailable = exports.updateJson = void 0;
 function updateJson(inputJSON, requestBody) {
     requestBody.forEach(function (request) {
         inputJSON.forEach(function (data) {
@@ -21,9 +21,25 @@ function checkIfStockIsAvailable(inputJSON, requestBody) {
     var isStockAvailable = true;
     requestBody.forEach(function (request) {
         var data = inputJSON.find(function (data) { return data.id === request.id; });
-        if (!data || (data && data.quantity < request.request))
+        if (!data || (data && data.quantity < request.quantity))
             isStockAvailable = false;
     });
     return isStockAvailable;
 }
 exports.checkIfStockIsAvailable = checkIfStockIsAvailable;
+function checkStockPrice(inputJSON, requestBody) {
+    var price = 0;
+    requestBody.forEach(function (request) {
+        var data = inputJSON.find(function (data) { return data.id === request.id; });
+        console.log("data: ", data);
+        if (data && data.quantity > request.quantity) {
+            price += request.quantity * (+data.price);
+        }
+        else {
+            price = 0;
+            return 0;
+        }
+    });
+    return price;
+}
+exports.checkStockPrice = checkStockPrice;

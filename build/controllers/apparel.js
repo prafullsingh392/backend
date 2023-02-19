@@ -79,7 +79,29 @@ var checkStock = function (req, res, next) { return __awaiter(void 0, void 0, vo
     });
 }); };
 exports.checkStock = checkStock;
-var checkPrice = function (req, res, next) {
-    res.send({ name: "Prafull" });
-};
+var checkPrice = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var data, price;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, (0, file_1.readFileData)()];
+            case 1:
+                data = _a.sent();
+                price = (0, jsonOperation_1.checkStockPrice)(data, req.body);
+                if (price > 0) {
+                    res.send({
+                        status: "success",
+                        message: "Stock is Available",
+                        price: price
+                    });
+                }
+                else {
+                    res.send({
+                        status: "failure",
+                        message: "Stock not avaiable"
+                    });
+                }
+                return [2 /*return*/];
+        }
+    });
+}); };
 exports.checkPrice = checkPrice;

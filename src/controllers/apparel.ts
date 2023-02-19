@@ -2,7 +2,7 @@
 
 import e, { Response, Request, NextFunction } from "express";
 import {readFileData,writeInFile} from '../utility/file';
-import {updateJson,checkIfStockIsAvailable} from '../utility/jsonOperation';
+import {updateJson,checkIfStockIsAvailable,checkStockPrice} from '../utility/jsonOperation';
 
 export const update = async (req:Request, res:Response, next:NextFunction) => {
     let data = await readFileData();
@@ -30,7 +30,20 @@ export const checkStock = async (req:Request, res:Response, next:NextFunction) =
 
 };
 
-export const checkPrice = (req:Request, res:Response, next:NextFunction) => {
-    res.send({name:"Prafull"}); 
+export const checkPrice = async (req:Request, res:Response, next:NextFunction) => {
+    let data = await readFileData();
+    let price = checkStockPrice(data,req.body);
+    if(price > 0){
+        res.send({
+            status:"success",
+            message:"Stock is Available",
+            price
+        })
+    }else{
+        res.send({
+            status:"failure",
+            message:"Stock not avaiable"
+        })
+    }
 };
 
