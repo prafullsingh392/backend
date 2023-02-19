@@ -1,8 +1,8 @@
 "use strict";
 
-import { Response, Request, NextFunction } from "express";
+import e, { Response, Request, NextFunction } from "express";
 import {readFileData,writeInFile} from '../utility/file';
-import {updateJson} from '../utility/jsonOperation';
+import {updateJson,checkIfStockIsAvailable} from '../utility/jsonOperation';
 
 export const update = async (req:Request, res:Response, next:NextFunction) => {
     let data = await readFileData();
@@ -14,8 +14,20 @@ export const update = async (req:Request, res:Response, next:NextFunction) => {
 
 
 
-export const checkStock = (req:Request, res:Response, next:NextFunction) => {
-    res.send({name:"Prafull"}); 
+export const checkStock = async (req:Request, res:Response, next:NextFunction) => {
+    let data = await readFileData();
+    if(checkIfStockIsAvailable(data,req.body)){
+        res.send({
+            status:"success",
+            message:"Stock is avaiable"
+        })
+    }else{
+        res.send({
+            status:"failure",
+            message:"Stock not avaiable"
+        })
+    }
+
 };
 
 export const checkPrice = (req:Request, res:Response, next:NextFunction) => {

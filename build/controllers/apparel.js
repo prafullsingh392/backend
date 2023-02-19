@@ -55,9 +55,29 @@ var update = function (req, res, next) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 exports.update = update;
-var checkStock = function (req, res, next) {
-    res.send({ name: "Prafull" });
-};
+var checkStock = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, (0, file_1.readFileData)()];
+            case 1:
+                data = _a.sent();
+                if ((0, jsonOperation_1.checkIfStockIsAvailable)(data, req.body)) {
+                    res.send({
+                        status: "success",
+                        message: "Stock is avaiable"
+                    });
+                }
+                else {
+                    res.send({
+                        status: "failure",
+                        message: "Stock not avaiable"
+                    });
+                }
+                return [2 /*return*/];
+        }
+    });
+}); };
 exports.checkStock = checkStock;
 var checkPrice = function (req, res, next) {
     res.send({ name: "Prafull" });

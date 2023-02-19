@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateJson = void 0;
+exports.checkIfStockIsAvailable = exports.updateJson = void 0;
 function updateJson(inputJSON, requestBody) {
     requestBody.forEach(function (request) {
         inputJSON.forEach(function (data) {
@@ -17,3 +17,13 @@ function updateJson(inputJSON, requestBody) {
     return inputJSON;
 }
 exports.updateJson = updateJson;
+function checkIfStockIsAvailable(inputJSON, requestBody) {
+    var isStockAvailable = true;
+    requestBody.forEach(function (request) {
+        var data = inputJSON.find(function (data) { return data.id === request.id; });
+        if (!data || (data && data.quantity < request.request))
+            isStockAvailable = false;
+    });
+    return isStockAvailable;
+}
+exports.checkIfStockIsAvailable = checkIfStockIsAvailable;
